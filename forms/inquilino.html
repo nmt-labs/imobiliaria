@@ -11,15 +11,45 @@
   <!-- navegacao -->
   <nav>
     <ul>
-      <li><a href="consulta/consulta.php">Visualizar</a></li>
-      <li><a href="forms/imovel.html">Adicionar imovel</a></li>
-      <li><a href="forms/inquilino.html">Adicionar inquilino</a></li>
+      <li><a href="../consulta/consulta.php">Visualizar</a></li>
+      <li><a href="../forms/imovel.html">Adicionar imovel</a></li>
+      <li><a href="../forms/inquilino.html">Adicionar inquilino</a></li>
     </ul>
   </nav>
   <!-- navegacao -->
   <!-- contaudo -->
   <main>
-    <!-- formulario de inquilino -->
+    <form action="../database/functions.php" method="post">
+      <div class="m-5 p-2">
+        <div class="mb-3 input-group">
+          <span class="input-group-text">Nome</span>
+          <input type="text" class="form-control" id="nome" name="nome">
+        </div>
+
+        <div class="mb-3 input-group">
+          <span class="input-group-text">CPF</span>
+          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="XXXXXXXXXXX">
+          <span class="input-group-text">Telefone</span>
+          <input type="text" class="form-control" id="telefone" name="telefone" placeholder="XX XXXXXXXXX">
+        </div>
+
+        <div class="mb-3 input-group">
+          <span class="input-group-text">Data de nascimento</span>
+          <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
+          <span class="input-group-text">Imovel</span>
+          <select class="form-select w-50" id="complemento" name="complemento">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+
+        <div class="p-2 float-end">
+          <button type="button" class="btn btn-outline-primary">Confirma</button>
+        </div>
+      </div>
+    </form>
   </main>
   <!-- conteudo -->
 
