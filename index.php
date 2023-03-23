@@ -11,15 +11,27 @@
   <!-- navegacao -->
   <nav>
     <ul>
-      <li><a href="consulta/consulta.php">Visualizar</a></li>
-      <li><a href="forms/imovel.html">Adicionar imovel</a></li>
-      <li><a href="forms/inquilino.html">Adicionar inquilino</a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="./forms/imovel.html">Adicionar imovel</a></li>
+      <li><a href="./forms/inquilino.html">Adicionar inquilino</a></li>
     </ul>
   </nav>
   <!-- navegacao -->
   <!-- contaudo -->
   <main>
-    <!-- depois substituir por um slide -->
+  <?php
+    require_once "database/conn.php";
+    $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', inquilino.nome 'inquilino' FROM imovel left join inquilino on imovel.id_imovel = inquilino.imovel;";
+
+    $imoveis = mysqli_query($conn, $query);
+    if ($imoveis -> num_rows != 0):
+      while ($imovel = mysqli_fetch_assoc($imoveis)):
+  ?>
+
+<?php
+    endwhile;
+  endif;
+?>
   </main>
   <!-- conteudo -->
 
