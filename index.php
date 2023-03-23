@@ -19,19 +19,46 @@
   <!-- navegacao -->
   <!-- contaudo -->
   <main>
+    <div class="row">
+      <div class="col">
+        <h2>Imoveis</h2>
+      </div>
+      <div class="col">
+        <h2>Inquilinos</h2>
+      </div>
+    </div>
   <?php
     require_once "database/conn.php";
-    $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', inquilino.nome 'inquilino' FROM imovel left join inquilino on imovel.id_imovel = inquilino.imovel;";
+    $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id' FROM imovel;";
 
     $imoveis = mysqli_query($conn, $query);
     if ($imoveis -> num_rows != 0):
       while ($imovel = mysqli_fetch_assoc($imoveis)):
   ?>
 
-<?php
-    endwhile;
-  endif;
-?>
+    <div class="row">
+      <div class="col">
+        <p><?= $imovel['bairro']; ?></p>
+      </div>
+      <div class="col">
+          <?php
+            $id = $imovel['id'];
+            $queryInquilino = "SELECT inquilino.nome 'inquilino' FROM inquilino WHERE inquilino.imovel = $id;";
+            $inquilinos = mysqli_query($conn, $queryInquilino);
+            while ($inquilino = mysqli_fetch_assoc($inquilinos)):
+          ?>
+          <p>
+            <?= $inquilino['inquilino'] ?>
+          </p>
+          <?php endwhile ?>
+      </div>
+    </div>
+    <hr>
+
+  <?php
+      endwhile;
+    endif;
+  ?>
   </main>
   <!-- conteudo -->
 
