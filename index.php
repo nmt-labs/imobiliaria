@@ -9,8 +9,8 @@
 </head>
 <body>
   <!-- navegacao -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+  <nav class="navbar bg-info navbar-expand-lg">
+    <div class="container-fluid m-1">
       <a class="navbar-brand" href="index.php">Imobiliaria</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
       </div>
     <?php
       require_once "database/conn.php";
-      $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id' FROM imovel;";
+      $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id', imovel.aluguel 'aluguel', imovel.proprietario 'proprietario' FROM imovel;";
 
       $imoveis = mysqli_query($conn, $query);
       if ($imoveis -> num_rows != 0):
@@ -54,17 +54,37 @@
       <div class="row">
         <div class="col">
           <p><?=$imovel['lougradouro']?>, <?=$imovel['numero']?> <?=$imovel['complemento']?>, <?=$imovel['bairro']?> - <?=$imovel['cidade']?>/<?=$imovel['uf']?></p>
+          <p>Aluguel: R$ <?=$imovel['aluguel']?></p>
+          <p>Proprietario: <?=$imovel['proprietario']?></p>
         </div>
-        <div class="col">
+        <div class="col accordion" id="accordionList">
             <?php
               $id = $imovel['id'];
-              $queryInquilino = "SELECT inquilino.nome 'inquilino' FROM inquilino WHERE inquilino.imovel = $id;";
+              $queryInquilino = "SELECT inquilino.nome 'inquilino', inquilino.cpf 'cpf', inquilino.telefone 'telefone', inquilino.data_nascimento 'data', inquilino.id_inquilino 'id' FROM inquilino WHERE inquilino.imovel = $id;";
               $inquilinos = mysqli_query($conn, $queryInquilino);
               while ($inquilino = mysqli_fetch_assoc($inquilinos)):
+                $data = implode('/', array_reverse(explode('-', $inquilino['data'])));
             ?>
-            <p>
+            <!-- <p>
               <?= $inquilino['inquilino'] ?>
-            </p>
+            </p> -->
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="inquilino<?= $inquilino['id'] ?>">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $inquilino['id'] ?>" aria-expanded="false" aria-controls="collapse<?= $inquilino['id'] ?>">
+                <?= $inquilino['inquilino'] ?>
+                </button>
+              </h2>
+              <div id="collapse<?= $inquilino['id'] ?>" class="accordion-collapse collapse" aria-labelledby="inquilino<?= $inquilino['id'] ?>" data-bs-parent="#accordionList">
+                <div class="accordion-body">
+                  <p>CPF: <?= $inquilino['cpf'] ?></p>
+                  <p>Telefone: <?= $inquilino['telefone'] ?></p>
+                  <p>Data de nascimento: <?= $data ?></p>
+                </div>
+              </div>
+            </div>
+
+
             <?php endwhile ?>
         </div>
       </div>

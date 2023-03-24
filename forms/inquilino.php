@@ -9,8 +9,8 @@
 </head>
 <body>
   <!-- navegacao -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+    <nav class="navbar bg-info navbar-expand-lg">
+    <div class="container-fluid m-1">
       <a class="navbar-brand" href="../index.php">Imobiliaria</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -41,10 +41,10 @@
         </div>
 
         <div class="mb-3 input-group">
-          <span class="input-group-text">CPF</span>
-          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="XXXXXXXXXXX">
+          <span class="input-group-text valida-cpf">CPF</span>
+          <input type="text" class="form-control valida-cpf" id="cpf" name="cpf" placeholder="XXXXXXXXXXX">
           <span class="input-group-text">Telefone</span>
-          <input type="text" class="form-control" id="telefone" name="telefone" placeholder="XX XXXXXXXXX">
+          <input type="text" class="form-control" id="telefone" name="telefone" placeholder="XXXXXXXXXXX">
         </div>
 
         <div class="mb-3 input-group">
@@ -52,7 +52,7 @@
           <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
           <span class="input-group-text">Imovel</span>
           <select class="form-select w-50" id="imovel" name="imovel">
-            <option selected>Open this select menu</option>
+            <option selected>Selecione um imovel</option>
             <?php
               require_once "../database/conn.php";
               $imovel = mysqli_query($conn, "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id' FROM imovel");
@@ -85,6 +85,7 @@
   </main>
   <!-- conteudo -->
 
+  <script src="../js/validar-cpf.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </body>

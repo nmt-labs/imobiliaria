@@ -9,8 +9,8 @@
 </head>
 <body>
   <!-- navegacao -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+  <nav class="navbar bg-info navbar-expand-lg">
+    <div class="container-fluid m-1">
       <a class="navbar-brand" href="../index.php">Imobiliaria</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
