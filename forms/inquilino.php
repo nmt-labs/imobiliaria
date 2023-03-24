@@ -21,7 +21,7 @@
             <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../forms/imovel.html">Adicionar imovel</a>
+            <a class="nav-link" href="../forms/imovel.php">Adicionar imovel</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../forms/inquilino.php">Adicionar inquilino</a>
@@ -69,6 +69,15 @@
 
         <input type="text" name="verify" value="inquilino" readonly class="d-none">
         <div class="p-2 float-end">
+          <?php
+          if (isset($_GET["cad"])){
+            if ($_GET["cad"]=="ok"){
+              $texto = "Cadastro realizado com sucesso!";
+            }
+          }
+          else $texto = "";
+          ?>
+          <span class="text-success"><?php echo $texto?></span>
           <button type="submit" class="btn btn-outline-primary">Confirma</button>
         </div>
       </div>

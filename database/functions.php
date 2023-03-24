@@ -30,7 +30,7 @@
     )";
 
     mysqli_query($conn, $query);
-    header("location: ../forms/imovel.html");
+    header("location: ../forms/imovel.php?cad=ok");
   }
 
   function cadastroInquilino(){
@@ -54,7 +54,7 @@
     )";
 
     mysqli_query($conn, $query);
-    header("location: ../forms/inquilino.php");
+    header("location: ../forms/inquilino.php?cad=ok");
   }
 
   if (isset($_POST['verify'])) {

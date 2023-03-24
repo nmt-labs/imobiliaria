@@ -21,7 +21,7 @@
             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./forms/imovel.html">Adicionar imovel</a>
+            <a class="nav-link" href="./forms/imovel.php">Adicionar imovel</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./forms/inquilino.php">Adicionar inquilino</a>
