@@ -51,17 +51,25 @@
           <span class="input-group-text">Data de nascimento</span>
           <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
           <span class="input-group-text">Imovel</span>
-          <select class="form-select w-50" id="complemento" name="complemento">
+          <select class="form-select w-50" id="imovel" name="imovel">
             <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <?php
+              require_once "../database/conn.php";
+              $imovel = mysqli_query($conn, "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id' FROM imovel");
+              while ($imoveis = mysqli_fetch_array($imovel)):
+            ?>
+              <option value="<?=$imoveis['id']?>">
+              <?=$imoveis['lougradouro']?>, <?=$imoveis['numero']?> <?=$imoveis['complemento']?>, <?=$imoveis['bairro']?> - <?=$imoveis['cidade']?>/<?=$imoveis['uf']?>
+              </option>
+            <?php
+              endwhile;
+            ?>
           </select>
         </div>
 
-        <input type="text" name="verify" value="cadastroInquilino" readonly class="d-none">
+        <input type="text" name="verify" value="inquilino" readonly class="d-none">
         <div class="p-2 float-end">
-          <button type="button" class="btn btn-outline-primary">Confirma</button>
+          <button type="submit" class="btn btn-outline-primary">Confirma</button>
         </div>
       </div>
     </form>

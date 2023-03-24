@@ -53,7 +53,7 @@
 
       <div class="row">
         <div class="col">
-          <p><?= $imovel['bairro']; ?></p>
+          <p><?=$imovel['lougradouro']?>, <?=$imovel['numero']?> <?=$imovel['complemento']?>, <?=$imovel['bairro']?> - <?=$imovel['cidade']?>/<?=$imovel['uf']?></p>
         </div>
         <div class="col">
             <?php
