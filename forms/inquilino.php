@@ -24,7 +24,7 @@
             <a class="nav-link" href="../forms/imovel.html">Adicionar imovel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../forms/inquilino.html">Adicionar inquilino</a>
+            <a class="nav-link" href="../forms/inquilino.php">Adicionar inquilino</a>
           </li>
         </ul>
       </div>
