@@ -9,56 +9,72 @@
 </head>
 <body>
   <!-- navegacao -->
-  <nav>
-    <ul>
-      <li><a href="index.php">Home</a></li>
-      <li><a href="./forms/imovel.html">Adicionar imovel</a></li>
-      <li><a href="./forms/inquilino.html">Adicionar inquilino</a></li>
-    </ul>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.php">Imobiliaria</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./forms/imovel.html">Adicionar imovel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./forms/inquilino.html">Adicionar inquilino</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
   <!-- navegacao -->
   <!-- contaudo -->
   <main>
-    <div class="row">
-      <div class="col">
-        <h2>Imoveis</h2>
+    <div class="tabela m-5 p-2">
+      <div class="row">
+        <div class="col">
+          <h2>Imoveis</h2>
+        </div>
+        <div class="col">
+          <h2>Inquilinos</h2>
+        </div>
       </div>
-      <div class="col">
-        <h2>Inquilinos</h2>
+    <?php
+      require_once "database/conn.php";
+      $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id' FROM imovel;";
+
+      $imoveis = mysqli_query($conn, $query);
+      if ($imoveis -> num_rows != 0):
+        while ($imovel = mysqli_fetch_assoc($imoveis)):
+    ?>
+
+      <div class="row">
+        <div class="col">
+          <p><?= $imovel['bairro']; ?></p>
+        </div>
+        <div class="col">
+            <?php
+              $id = $imovel['id'];
+              $queryInquilino = "SELECT inquilino.nome 'inquilino' FROM inquilino WHERE inquilino.imovel = $id;";
+              $inquilinos = mysqli_query($conn, $queryInquilino);
+              while ($inquilino = mysqli_fetch_assoc($inquilinos)):
+            ?>
+            <p>
+              <?= $inquilino['inquilino'] ?>
+            </p>
+            <?php endwhile ?>
+        </div>
       </div>
+      <hr>
+
+    <?php
+        endwhile;
+      endif;
+    ?>
     </div>
-  <?php
-    require_once "database/conn.php";
-    $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id' FROM imovel;";
-
-    $imoveis = mysqli_query($conn, $query);
-    if ($imoveis -> num_rows != 0):
-      while ($imovel = mysqli_fetch_assoc($imoveis)):
-  ?>
-
-    <div class="row">
-      <div class="col">
-        <p><?= $imovel['bairro']; ?></p>
-      </div>
-      <div class="col">
-          <?php
-            $id = $imovel['id'];
-            $queryInquilino = "SELECT inquilino.nome 'inquilino' FROM inquilino WHERE inquilino.imovel = $id;";
-            $inquilinos = mysqli_query($conn, $queryInquilino);
-            while ($inquilino = mysqli_fetch_assoc($inquilinos)):
-          ?>
-          <p>
-            <?= $inquilino['inquilino'] ?>
-          </p>
-          <?php endwhile ?>
-      </div>
-    </div>
-    <hr>
-
-  <?php
-      endwhile;
-    endif;
-  ?>
   </main>
   <!-- conteudo -->
 
