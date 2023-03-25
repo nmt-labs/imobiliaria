@@ -25,7 +25,6 @@ async function fetchCep(url) {
     bairro.value = cepJSON.bairro;
     cidade.value = cepJSON.localidade;
     uf.value = cepJSON.uf;
-    //console.log(cepJSON.logradouro)
 
   } catch (e) {
     console.log(Error(e));

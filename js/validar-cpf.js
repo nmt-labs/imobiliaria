@@ -1,13 +1,14 @@
 const cpf = document.querySelector('#cpf');
 const inputCPF = document.querySelectorAll('.valida-cpf');
+
 cpf.addEventListener('blur', handleChange);
 
 function handleChange(){
   const strCPF = cpf.value;
   
-  if(validaCPF(strCPF) == false){
+  if(!validaCPF(strCPF)){
     inputCPF.forEach(element => {
-      element.classList.add('border-success');
+      element.classList.remove('border-success');
       element.classList.add('border-danger');
     });
   }
