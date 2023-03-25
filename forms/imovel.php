@@ -70,15 +70,25 @@
 
         <input type="text" name="verify" value="imovel" readonly class="d-none">
         <div class="p-2 float-end">
-        <?php
-          if (isset($_GET["cad"])){
-            if ($_GET["cad"]=="ok"){
-              $texto = "Cadastro realizado com sucesso!";
+          <!-- mensagem de retorno -->
+          <?php
+            if (isset($_GET["cad"])) {
+              if ($_GET["cad"]=="ok") {
+                $cor = "success";
+                $texto = "Cadastro realizado com sucesso!";
+              }
+              else {
+                $cor = "danger";
+                $texto = "Falha ao cadastrar";
+              }
             }
-          }
-          else $texto = "";
+            else {
+              $cor = "danger";
+              $texto = "";
+            }
           ?>
-          <span class="text-success"><?php echo $texto?></span>
+          <span class="text-<?php echo $cor?>"><?php echo $texto?></span>
+          <!-- mensagem de retorno -->
           <button type="submit" class="btn btn-outline-primary">Confirma</button>
         </div>
       </div>

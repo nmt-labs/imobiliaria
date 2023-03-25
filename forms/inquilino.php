@@ -53,6 +53,7 @@
           <span class="input-group-text">Imóvel</span>
           <select class="form-select w-50" id="imovel" name="imovel">
             <option selected>Selecione um imovel</option>
+            <!-- lista de imoveis -->
             <?php
               require_once "../database/conn.php";
               $imovel = mysqli_query($conn, "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id' FROM imovel");
@@ -64,20 +65,31 @@
             <?php
               endwhile;
             ?>
+            <!-- lista de imoveis -->
           </select>
         </div>
 
         <input type="text" name="verify" value="inquilino" readonly class="d-none">
         <div class="p-2 float-end">
+          <!-- mensagem de retorno -->
           <?php
-          if (isset($_GET["cad"])){
-            if ($_GET["cad"]=="ok"){
-              $texto = "Cadastro realizado com sucesso!";
+            if (isset($_GET["cad"])) {
+              if ($_GET["cad"]=="ok") {
+                $cor = "success";
+                $texto = "Cadastro realizado com sucesso!";
+              }
+              else {
+                $cor = "danger";
+                $texto = "Falha ao cadastrar";
+              }
             }
-          }
-          else $texto = "";
+            else {
+              $cor = "danger";
+              $texto = "";
+            }
           ?>
-          <span class="text-success"><?php echo $texto?></span>
+          <span class="text-<?php echo $cor?>"><?php echo $texto?></span>
+          <!-- mensagem de retorno -->
           <button type="submit" class="btn btn-outline-primary">Confirma</button>
         </div>
       </div>

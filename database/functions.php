@@ -29,8 +29,10 @@
       '$proprietario'
     )";
 
-    mysqli_query($conn, $query);
-    header("location: ../forms/imovel.php?cad=ok");
+    $result = mysqli_query($conn, $query);
+    // redirecionar para pagina de sucesso ou falha
+    if($result) header("location: ../forms/imovel.php?cad=ok");
+    else header("location: ../forms/imovel.php?cad=fail");
   }
 
   function cadastroInquilino(){
@@ -53,8 +55,10 @@
       $imovel
     )";
 
-    mysqli_query($conn, $query);
-    header("location: ../forms/inquilino.php?cad=ok");
+    $result = mysqli_query($conn, $query);
+    // redirecionar para pagina de sucesso ou falha
+    if($result) header("location: ../forms/inquilino.php?cad=ok");
+    else header("location: ../forms/inquilino.php?cad=fail");
   }
 
   if (isset($_POST['verify'])) {
@@ -64,9 +68,6 @@
     }
     if ($verify == "inquilino") {
       cadastroInquilino();
-    }
-    if ($verify == "consulta") {
-      consulta();
     }
     else{
       echo "Erro de envio de formulario";

@@ -34,6 +34,7 @@
   <!-- contaudo -->
   <main>
     <div class="tabela m-5 p-2">
+      <!-- cabecalho -->
       <div class="row">
         <div class="col">
           <h2>Imóveis</h2>
@@ -42,6 +43,7 @@
           <h2>Inquilinos</h2>
         </div>
       </div>
+      <!-- cabecalho -->
     <?php
       require_once "database/conn.php";
       $query = "SELECT imovel.uf 'uf', imovel.cidade 'cidade', imovel.bairro 'bairro', imovel.logradouro 'lougradouro', imovel.numero 'numero', imovel.complemento 'complemento', imovel.id_imovel 'id', imovel.aluguel 'aluguel', imovel.proprietario 'proprietario' FROM imovel;";
@@ -51,11 +53,12 @@
         while ($imovel = mysqli_fetch_assoc($imoveis)):
     ?>
 
+      <!-- dados dos imoveis e inquilinos -->
       <div class="row">
         <div class="col">
           <p><?=$imovel['lougradouro']?>, <?=$imovel['numero']?> <?=$imovel['complemento']?>, <?=$imovel['bairro']?> - <?=$imovel['cidade']?>/<?=$imovel['uf']?></p>
-          <p>Aluguel: R$ <?=$imovel['aluguel']?></p>
-          <p>Proprietario: <?=$imovel['proprietario']?></p>
+          <p><b>Aluguel:</b> R$ <?=$imovel['aluguel']?></p>
+          <p><b>Proprietario:</b> <?=$imovel['proprietario']?></p>
         </div>
         <div class="col accordion" id="accordionList">
             <?php
@@ -65,9 +68,6 @@
               while ($inquilino = mysqli_fetch_assoc($inquilinos)):
                 $data = implode('/', array_reverse(explode('-', $inquilino['data'])));
             ?>
-            <!-- <p>
-              <?= $inquilino['inquilino'] ?>
-            </p> -->
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="inquilino<?= $inquilino['id'] ?>">
@@ -77,17 +77,16 @@
               </h2>
               <div id="collapse<?= $inquilino['id'] ?>" class="accordion-collapse collapse" aria-labelledby="inquilino<?= $inquilino['id'] ?>" data-bs-parent="#accordionList">
                 <div class="accordion-body">
-                  <p>CPF: <?= $inquilino['cpf'] ?></p>
-                  <p>Telefone: <?= $inquilino['telefone'] ?></p>
-                  <p>Data de nascimento: <?= $data ?></p>
+                  <p><b>CPF:</b> <?= $inquilino['cpf'] ?></p>
+                  <p><b>Telefone:</b> <?= $inquilino['telefone'] ?></p>
+                  <p><b>Data de nascimento:</b> <?= $data ?></p>
                 </div>
               </div>
             </div>
-
-
             <?php endwhile ?>
         </div>
       </div>
+      <!-- dados -->
       <hr>
 
     <?php
